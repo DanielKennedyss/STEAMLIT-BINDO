@@ -199,12 +199,19 @@ with tab1:
     fig.add_trace(go.Scatter(x=df_valid.index, y=df_valid['Predictions'].values.flatten(), name='Estimasi Model AI (LSTM)', line=dict(color='#DC2626', dash='dash', width=2)))
     fig.add_trace(go.Scatter(x=df_valid.index, y=df_valid['MA50'].values.flatten(), name='Indikator MA50', line=dict(color='#F59E0B', width=1.5, dash='dot')))
     
+    # PERBAIKAN: Penghapusan parameter ylink yang merusak sistem internal Plotly
     fig.update_layout(
         template="plotly_white",
         xaxis_title="Periode Transaksi (Waktu)",
         yaxis_title="Nilai Penutupan Saham (IDR)",
         hovermode="x unified",
-        legend=dict(orientation="h", ylink=1, y=1.02, x=0, xanchor="left"),
+        legend=dict(
+            orientation="h", 
+            y=1.02, 
+            x=0, 
+            xanchor="left",
+            yanchor="bottom"
+        ),
         margin=dict(l=20, r=20, t=30, b=20),
         height=550
     )
